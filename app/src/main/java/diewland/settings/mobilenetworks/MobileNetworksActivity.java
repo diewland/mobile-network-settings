@@ -25,8 +25,11 @@ public class MobileNetworksActivity extends Activity {
         if(Build.VERSION.SDK_INT < 16){ // lower than jelly bean
 	        intent.setComponent(new ComponentName("com.android.phone", "com.android.phone.Settings"));
         }
-        else { // jelly bean and upper
+        else if(Build.VERSION.SDK_INT < 26){ // lower than oreo
 	        intent.setComponent(new ComponentName("com.android.phone", "com.android.phone.MobileNetworkSettings"));
+        }
+        else { // oreo and upper
+            return new Intent("android.settings.DATA_ROAMING_SETTINGS");
         }
         return intent;
     }
